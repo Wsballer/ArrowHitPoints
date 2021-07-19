@@ -2,52 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DamageHitPoints
+namespace ArrowHitPoints
 {
-    class SwordDamage
+    class SwordDamage : WeaponDamage
     {
-        private const int BASE_DAMAGE = 3;
-        private const int FLAME_DAMAGE = 2;
-
-        private int roll;
-        /// <summary>
-        /// Sets or gets the 3d6 roll.
-        /// </summary>
-        public int Roll
-        {
-            get { return roll; }
-            set { roll = value; CalculateDamage(); }
-        }
-
-        private bool flaming;
-        /// <summary>
-        /// True if the sword is flaming, false otherwise.
-        /// </summary>
-        public bool Flaming
-        {
-            get { return flaming; }
-            set { flaming = value; CalculateDamage(); }
-        }
-
-        private bool magic;
-        /// <summary>
-        /// True if the sword is magic, false otherwise.
-        /// </summary>
-        public bool Magic
-        {
-            get { return magic; }
-            set { magic = value; CalculateDamage(); }
-        }
-
-        /// <summary>
-        /// Contains the calculate damage.
-        /// </summary>
-        public int Damage { get; private set; }
+        public const int BASE_DAMAGE = 3;
+        public const int FLAME_DAMAGE = 2;
 
         /// <summary>
         /// Calculates the damage based on the current properties.
         /// </summary>
-        public void CalculateDamage()
+        protected override void CalculateDamage()
         {
             decimal magicMultiplier = 1M;
             if (Magic) magicMultiplier = 1.75M;
@@ -62,10 +27,6 @@ namespace DamageHitPoints
         /// and Flaming values and a starting 3d6 roll.
         /// </summary>
         /// <param name="startingRoll">Starting 3d6 roll</param>
-        public SwordDamage(int startingRoll)
-        {
-            roll = startingRoll;
-            CalculateDamage();
-        }
+        public SwordDamage(int startingRoll) : base(startingRoll) { }
     }
 }

@@ -4,51 +4,16 @@ using System.Text;
 
 namespace ArrowHitPoints
 {
-    class ArrowDamage
+    class ArrowDamage : WeaponDamage
     {
         private const decimal BASE_MULTIPLIER = 0.35M;
         private const decimal MAGIC_MULTIPLIER = 2.5M;
         private const decimal FLAME_DAMAGE = 1.25M;
 
-        private int roll;
-        /// <summary>
-        /// Sets or gets the 3d6 roll.
-        /// </summary>
-        public int Roll
-        {
-            get { return roll; }
-            set { roll = value; CalculateDamage(); }
-        }
-
-        private bool flaming;
-        /// <summary>
-        /// True if the sword is flaming, false otherwise.
-        /// </summary>
-        public bool Flaming
-        {
-            get { return flaming; }
-            set { flaming = value; CalculateDamage(); }
-        }
-
-        private bool magic;
-        /// <summary>
-        /// True if the sword is magic, false otherwise.
-        /// </summary>
-        public bool Magic
-        {
-            get { return magic; }
-            set { magic = value; CalculateDamage(); }
-        }
-
-        /// <summary>
-        /// Contains the calculate damage.
-        /// </summary>
-        public int Damage { get; private set; }
-
         /// <summary>
         /// Calculates the damage based on the current properties.
         /// </summary>
-        public void CalculateDamage()
+        protected override void CalculateDamage()
         {
             decimal baseDamage = Roll * BASE_MULTIPLIER;
             if (Magic) baseDamage *= MAGIC_MULTIPLIER;
@@ -61,10 +26,6 @@ namespace ArrowHitPoints
         /// and Flaming values and a starting 3d6 roll.
         /// </summary>
         /// <param name="startingRoll">Starting 3d6 roll</param>
-        public ArrowDamage(int startingRoll)
-        {
-            roll = startingRoll;
-            CalculateDamage();
-        }
+        public ArrowDamage(int startingRoll) : base(startingRoll) { }
     }
 }

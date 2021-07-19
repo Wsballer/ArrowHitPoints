@@ -1,5 +1,4 @@
-﻿using DamageHitPoints;
-using System;
+﻿using System;
 
 namespace ArrowHitPoints
 {
