@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArrowHitPoints
 {
-    class WeaponDamage
+    abstract class WeaponDamage
     {
         private int roll;
         /// <summary>
@@ -41,10 +41,7 @@ namespace ArrowHitPoints
         /// </summary>
         public int Damage { get; protected set; }
 
-        protected virtual void CalculateDamage()
-        {
-            /* the subclass overrides this */
-        }
+        protected abstract void CalculateDamage();
 
         /// <summary>
         /// The constructor calculates damage based on default Magic
